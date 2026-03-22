@@ -4,9 +4,10 @@ A full-stack web app to manage investment fund savings — deposit money into fu
 
 ## Stack
 
-**Frontend** — Next.js 15, TailwindCSS, Redux Toolkit, SWR, Recharts, Framer Motion
+**Frontend** — Next.js 15, TailwindCSS, Redux Toolkit, SWR, Recharts, Framer Motion, next-intl
 
 **Backend** — Express.js, MongoDB, Mongoose, Joi, Helmet, express-rate-limit, bcryptjs
+
 
 ## Prerequisites
 
@@ -48,8 +49,8 @@ brew services start mongodb-community
 
 ```bash
 cd backend
-npm run seed
-npm run seed:user
+npm run seed       # funds & valuations
+npm run seed:user  # creates the demo user
 ```
 
 ### 5. Run the app
