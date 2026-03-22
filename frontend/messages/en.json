@@ -1,0 +1,69 @@
+{
+  "nav": { "title": "My Savings", "logout": "Logout", "lang": "FR" },
+  "login": {
+    "title": "My Savings",
+    "subtitle": "Sign in to your account",
+    "email": "Email address",
+    "password": "Password",
+    "submit": "Sign in",
+    "loading": "Signing in…",
+    "error": "Invalid credentials."
+  },
+  "dashboard": {
+    "currentSavings": "Current savings",
+    "invested": "Invested",
+    "noData": "No investments yet.",
+    "evolution": "Savings evolution",
+    "value": "Value",
+    "allocation": "Fund allocation",
+    "history": "Deposits",
+    "noTransaction": "No transactions yet.",
+    "funds": "funds",
+    "shares": "shares",
+    "new": "New",
+    "rib": "IBAN",
+    "bic": "BIC"
+  },
+  "deposit": {
+    "steps": {
+      "amount": "Amount",
+      "funds": "Funds",
+      "allocation": "Allocation",
+      "confirmation": "Confirmation"
+    },
+    "amount": {
+      "amountLabel": "Amount (€)",
+      "ribLabel": "IBAN",
+      "bicLabel": "BIC",
+      "next": "Next →",
+      "amountError": "Amount is required and must be positive.",
+      "ribRequired": "IBAN is required.",
+      "ribInvalid": "Invalid IBAN format (e.g. FR7630004000031234567890143).",
+      "bicRequired": "BIC is required.",
+      "bicInvalid": "Invalid BIC format (e.g. BNPAFRPP)."
+    },
+    "funds": {
+      "selected": "fund(s) selected",
+      "minError": "Please select at least one fund.",
+      "back": "← Back",
+      "next": "Next →"
+    },
+    "allocation": {
+      "total": "Total",
+      "mustBe100": "must equal 100%",
+      "balance": "Balance",
+      "back": "← Back",
+      "next": "Next →"
+    },
+    "confirmation": {
+      "amount": "Amount",
+      "rib": "IBAN",
+      "bic": "BIC",
+      "allocation": "Allocation",
+      "back": "← Back",
+      "submit": "Confirm deposit",
+      "loading": "Processing…",
+      "error": "An error occurred. Please try again."
+    }
+  }
+}

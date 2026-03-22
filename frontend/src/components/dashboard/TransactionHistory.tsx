@@ -2,19 +2,17 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { useTransactions } from '@/hooks/useTransactions';
 
 const fmt = (n: number) =>
   new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(n);
 
 const fmtDate = (d: string) =>
-  new Date(d).toLocaleDateString('fr-FR', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric',
-  });
+  new Date(d).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' });
 
 export default function TransactionHistory() {
+  const t = useTranslations('dashboard');
   const { transactions, isLoading } = useTransactions();
   const [openId, setOpenId] = useState<string | null>(null);
 
@@ -25,7 +23,7 @@ export default function TransactionHistory() {
   if (transactions.length === 0) {
     return (
       <div className="rounded-2xl bg-white p-6 shadow-sm text-center text-gray-400 text-sm">
-        Aucune transaction pour le moment.
+        {t('noTransaction')}
       </div>
     );
   }
@@ -38,12 +36,12 @@ export default function TransactionHistory() {
       className="rounded-2xl bg-white shadow-sm overflow-hidden"
     >
       <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
-        <h2 className="text-sm font-semibold text-gray-700">Versements</h2>
+        <h2 className="text-sm font-semibold text-gray-700">{t('history')}</h2>
         <a
           href="/deposit"
           className="text-xs font-medium px-3 py-1.5 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 transition-colors"
         >
-          Nouveau
+          {t('new')}
         </a>
       </div>
       <ul className="divide-y divide-gray-100">
@@ -61,13 +59,9 @@ export default function TransactionHistory() {
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="text-xs text-gray-400">
-                    {tx.allocations.length} fonds
+                    {tx.allocations.length} {t('funds')}
                   </span>
-                  <span
-                    className={`text-gray-400 transition-transform duration-200 ${
-                      isOpen ? 'rotate-180' : ''
-                    }`}
-                  >
+                  <span className={`text-gray-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}>
                     ▾
                   </span>
                 </div>
@@ -85,7 +79,7 @@ export default function TransactionHistory() {
                   >
                     <div className="px-6 pb-4 space-y-2">
                       <p className="text-xs text-gray-400 mb-2">
-                        RIB : {tx.rib} — BIC : {tx.bic}
+                        {t('rib')} : {tx.rib} — {t('bic')} : {tx.bic}
                       </p>
                       {tx.allocations.map((alloc) => (
                         <div
@@ -98,7 +92,7 @@ export default function TransactionHistory() {
                           <div className="flex items-center gap-3 text-gray-500">
                             <span>{alloc.allocationPercent}%</span>
                             <span>{fmt((tx.amount * alloc.allocationPercent) / 100)}</span>
-                            <span>{alloc.sharesBought.toFixed(4)} parts</span>
+                            <span>{alloc.sharesBought.toFixed(4)} {t('shares')}</span>
                           </div>
                         </div>
                       ))}

@@ -1,26 +1,18 @@
 'use client';
 
-import {
-  ResponsiveContainer,
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  CartesianGrid,
-} from 'recharts';
+import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
+import { useTranslations } from 'next-intl';
 import { usePortfolioHistory } from '@/hooks/usePortfolio';
 import { motion } from 'framer-motion';
 
-const formatDate = (d: string) => {
-  const date = new Date(d);
-  return date.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short' });
-};
+const formatDate = (d: string) =>
+  new Date(d).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short' });
 
 const formatEur = (v: number) =>
   new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(v);
 
 export default function EvolutionChart() {
+  const t = useTranslations('dashboard');
   const { history, isLoading } = usePortfolioHistory();
 
   if (isLoading) {
@@ -30,7 +22,7 @@ export default function EvolutionChart() {
   if (history.length === 0) {
     return (
       <div className="rounded-2xl bg-white p-6 shadow-sm flex items-center justify-center h-64 text-gray-400 text-sm">
-        Aucun investissement pour le moment.
+        {t('noData')}
       </div>
     );
   }
@@ -42,7 +34,7 @@ export default function EvolutionChart() {
       transition={{ duration: 0.4, delay: 0.1 }}
       className="rounded-2xl bg-white p-6 shadow-sm"
     >
-      <h2 className="text-sm font-semibold text-gray-700 mb-4">Évolution de l&apos;épargne</h2>
+      <h2 className="text-sm font-semibold text-gray-700 mb-4">{t('evolution')}</h2>
       <ResponsiveContainer width="100%" height={220}>
         <LineChart data={history} margin={{ top: 4, right: 8, left: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
@@ -58,7 +50,7 @@ export default function EvolutionChart() {
             width={56}
           />
           <Tooltip
-            formatter={(value: number) => [formatEur(value), 'Valeur']}
+            formatter={(value: number) => [formatEur(value), t('value')]}
             labelFormatter={(label) => formatDate(label)}
             contentStyle={{ fontSize: 12, borderRadius: 8 }}
           />

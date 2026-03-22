@@ -1,6 +1,7 @@
 'use client';
 
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import { useTranslations } from 'next-intl';
 import { usePortfolioSummary } from '@/hooks/usePortfolio';
 import { motion } from 'framer-motion';
 
@@ -10,6 +11,7 @@ const COLORS = [
 ];
 
 export default function AllocationPieChart() {
+  const t = useTranslations('dashboard');
   const { summary, isLoading } = usePortfolioSummary();
 
   if (isLoading) {
@@ -25,7 +27,7 @@ export default function AllocationPieChart() {
   if (data.length === 0) {
     return (
       <div className="rounded-2xl bg-white p-6 shadow-sm flex items-center justify-center h-64 text-gray-400 text-sm">
-        Aucun investissement pour le moment.
+        {t('noData')}
       </div>
     );
   }
@@ -37,7 +39,7 @@ export default function AllocationPieChart() {
       transition={{ duration: 0.4, delay: 0.2 }}
       className="rounded-2xl bg-white p-6 shadow-sm"
     >
-      <h2 className="text-sm font-semibold text-gray-700 mb-4">Répartition des fonds</h2>
+      <h2 className="text-sm font-semibold text-gray-700 mb-4">{t('allocation')}</h2>
       <ResponsiveContainer width="100%" height={220}>
         <PieChart>
           <Pie
@@ -59,11 +61,7 @@ export default function AllocationPieChart() {
             }
             contentStyle={{ fontSize: 12, borderRadius: 8 }}
           />
-          <Legend
-            iconType="circle"
-            iconSize={8}
-            wrapperStyle={{ fontSize: 11 }}
-          />
+          <Legend iconType="circle" iconSize={8} wrapperStyle={{ fontSize: 11 }} />
         </PieChart>
       </ResponsiveContainer>
     </motion.div>

@@ -1,12 +1,15 @@
 'use client';
 
-const STEPS = ['Montant', 'Fonds', 'Allocation', 'Confirmation'];
+import { useTranslations } from 'next-intl';
 
 interface StepIndicatorProps {
   currentStep: number;
 }
 
 export default function StepIndicator({ currentStep }: StepIndicatorProps) {
+  const t = useTranslations('deposit.steps');
+  const STEPS = [t('amount'), t('funds'), t('allocation'), t('confirmation')];
+
   return (
     <div className="flex items-center justify-between mb-8">
       {STEPS.map((label, index) => {
@@ -26,20 +29,12 @@ export default function StepIndicator({ currentStep }: StepIndicatorProps) {
               >
                 {isDone ? '✓' : index + 1}
               </div>
-              <span
-                className={`text-xs font-medium ${
-                  isActive ? 'text-indigo-600' : 'text-gray-400'
-                }`}
-              >
+              <span className={`text-xs font-medium ${isActive ? 'text-indigo-600' : 'text-gray-400'}`}>
                 {label}
               </span>
             </div>
             {index < STEPS.length - 1 && (
-              <div
-                className={`flex-1 h-0.5 mx-2 mb-4 transition-colors ${
-                  isDone ? 'bg-indigo-600' : 'bg-gray-200'
-                }`}
-              />
+              <div className={`flex-1 h-0.5 mx-2 mb-4 transition-colors ${isDone ? 'bg-indigo-600' : 'bg-gray-200'}`} />
             )}
           </div>
         );

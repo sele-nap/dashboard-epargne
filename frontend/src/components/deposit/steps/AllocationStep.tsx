@@ -1,16 +1,16 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setAllocations, setStep } from '@/store/slices/depositSlice';
 
 export default function AllocationStep() {
   const dispatch = useAppDispatch();
   const { allocations, amount } = useAppSelector((s) => s.deposit);
+  const t = useTranslations('deposit.allocation');
 
-  const [values, setValues] = useState<number[]>(
-    allocations.map((a) => a.allocationPercent)
-  );
+  const [values, setValues] = useState<number[]>(allocations.map((a) => a.allocationPercent));
 
   const total = values.reduce((sum, v) => sum + v, 0);
   const isValid = Math.round(total) === 100;
@@ -29,11 +29,7 @@ export default function AllocationStep() {
 
   const handleNext = () => {
     if (!isValid) return;
-    dispatch(
-      setAllocations(
-        allocations.map((a, i) => ({ ...a, allocationPercent: values[i] }))
-      )
-    );
+    dispatch(setAllocations(allocations.map((a, i) => ({ ...a, allocationPercent: values[i] }))));
     dispatch(setStep(3));
   };
 
@@ -45,19 +41,12 @@ export default function AllocationStep() {
       <div className="flex items-center justify-between">
         <div>
           <span className={`text-sm font-semibold ${isValid ? 'text-green-600' : 'text-red-500'}`}>
-            Total : {total.toFixed(0)}%
+            {t('total')} : {total.toFixed(0)}%
           </span>
-          {!isValid && (
-            <span className="text-xs text-red-400 ml-2">
-              (doit être égal à 100%)
-            </span>
-          )}
+          {!isValid && <span className="text-xs text-red-400 ml-2">({t('mustBe100')})</span>}
         </div>
-        <button
-          onClick={autoBalance}
-          className="text-xs text-indigo-600 font-medium hover:underline"
-        >
-          Équilibrer
+        <button onClick={autoBalance} className="text-xs text-indigo-600 font-medium hover:underline">
+          {t('balance')}
         </button>
       </div>
 
@@ -65,32 +54,12 @@ export default function AllocationStep() {
         {allocations.map((alloc, i) => (
           <li key={alloc.fundIsin} className="rounded-xl border border-gray-200 p-4">
             <div className="flex items-center justify-between mb-2">
-              <p className="text-sm font-medium text-gray-900 truncate max-w-[65%]">
-                {alloc.fundName}
-              </p>
-              <span className="text-xs text-gray-400">
-                {amount ? fmt((amount * (values[i] ?? 0)) / 100) : '—'}
-              </span>
+              <p className="text-sm font-medium text-gray-900 truncate max-w-[65%]">{alloc.fundName}</p>
+              <span className="text-xs text-gray-400">{amount ? fmt((amount * (values[i] ?? 0)) / 100) : '—'}</span>
             </div>
             <div className="flex items-center gap-3">
-              <input
-                type="range"
-                min={0}
-                max={100}
-                step={1}
-                value={values[i] ?? 0}
-                onChange={(e) => handleChange(i, e.target.value)}
-                className="flex-1 accent-indigo-600"
-              />
-              <input
-                type="number"
-                min={0}
-                max={100}
-                step={0.1}
-                value={values[i] ?? 0}
-                onChange={(e) => handleChange(i, e.target.value)}
-                className="w-16 rounded-lg border border-gray-200 px-2 py-1 text-sm text-center outline-none focus:ring-2 focus:ring-indigo-500"
-              />
+              <input type="range" min={0} max={100} step={1} value={values[i] ?? 0} onChange={(e) => handleChange(i, e.target.value)} className="flex-1 accent-indigo-600" />
+              <input type="number" min={0} max={100} step={0.1} value={values[i] ?? 0} onChange={(e) => handleChange(i, e.target.value)} className="w-16 rounded-lg border border-gray-200 px-2 py-1 text-sm text-center outline-none focus:ring-2 focus:ring-indigo-500" />
               <span className="text-sm text-gray-500">%</span>
             </div>
           </li>
@@ -98,18 +67,11 @@ export default function AllocationStep() {
       </ul>
 
       <div className="flex gap-3 pt-2">
-        <button
-          onClick={() => dispatch(setStep(1))}
-          className="flex-1 rounded-xl border border-gray-200 py-3 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors"
-        >
-          ← Retour
+        <button onClick={() => dispatch(setStep(1))} className="flex-1 rounded-xl border border-gray-200 py-3 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors">
+          {t('back')}
         </button>
-        <button
-          onClick={handleNext}
-          disabled={!isValid}
-          className="flex-1 bg-indigo-600 text-white rounded-xl py-3 text-sm font-semibold hover:bg-indigo-700 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-        >
-          Suivant →
+        <button onClick={handleNext} disabled={!isValid} className="flex-1 bg-indigo-600 text-white rounded-xl py-3 text-sm font-semibold hover:bg-indigo-700 transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
+          {t('next')}
         </button>
       </div>
     </div>

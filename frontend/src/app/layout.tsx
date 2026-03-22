@@ -3,6 +3,8 @@ import { Geist } from 'next/font/google';
 import './globals.css';
 import Providers from './providers';
 import Navbar from '@/components/Navbar';
+import { NextIntlClientProvider } from 'next-intl';
+import { getLocale, getMessages } from 'next-intl/server';
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-geist' });
 
@@ -11,14 +13,19 @@ export const metadata: Metadata = {
   description: 'Tableau de bord de gestion de votre épargne investie',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-    <html lang="fr" className={`${geist.variable} h-full`}>
+    <html lang={locale} className={`${geist.variable} h-full`}>
       <body className="min-h-full bg-gray-50 font-sans antialiased">
-        <Providers>
-          <Navbar />
-          <main>{children}</main>
-        </Providers>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <Providers>
+            <Navbar />
+            <main>{children}</main>
+          </Providers>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

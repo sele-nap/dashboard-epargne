@@ -1,0 +1,69 @@
+{
+  "nav": { "title": "Mon Épargne", "logout": "Déconnexion", "lang": "EN" },
+  "login": {
+    "title": "Mon Épargne",
+    "subtitle": "Connectez-vous à votre espace",
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "submit": "Se connecter",
+    "loading": "Connexion…",
+    "error": "Identifiants incorrects."
+  },
+  "dashboard": {
+    "currentSavings": "Épargne actuelle",
+    "invested": "Investi",
+    "noData": "Aucun investissement pour le moment.",
+    "evolution": "Évolution de l'épargne",
+    "value": "Valeur",
+    "allocation": "Répartition des fonds",
+    "history": "Versements",
+    "noTransaction": "Aucune transaction pour le moment.",
+    "funds": "fonds",
+    "shares": "parts",
+    "new": "Nouveau",
+    "rib": "RIB",
+    "bic": "BIC"
+  },
+  "deposit": {
+    "steps": {
+      "amount": "Montant",
+      "funds": "Fonds",
+      "allocation": "Allocation",
+      "confirmation": "Confirmation"
+    },
+    "amount": {
+      "amountLabel": "Montant (€)",
+      "ribLabel": "RIB (IBAN)",
+      "bicLabel": "BIC",
+      "next": "Suivant →",
+      "amountError": "Montant requis et doit être positif.",
+      "ribRequired": "Le RIB est requis.",
+      "ribInvalid": "Format RIB invalide (ex: FR7630004000031234567890143).",
+      "bicRequired": "Le BIC est requis.",
+      "bicInvalid": "Format BIC invalide (ex: BNPAFRPP)."
+    },
+    "funds": {
+      "selected": "fonds sélectionné(s)",
+      "minError": "Sélectionnez au moins un fonds.",
+      "back": "← Retour",
+      "next": "Suivant →"
+    },
+    "allocation": {
+      "total": "Total",
+      "mustBe100": "doit être égal à 100%",
+      "balance": "Équilibrer",
+      "back": "← Retour",
+      "next": "Suivant →"
+    },
+    "confirmation": {
+      "amount": "Montant",
+      "rib": "RIB",
+      "bic": "BIC",
+      "allocation": "Répartition",
+      "back": "← Retour",
+      "submit": "Confirmer le dépôt",
+      "loading": "Traitement…",
+      "error": "Une erreur est survenue. Veuillez réessayer."
+    }
+  }
+}
