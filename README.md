@@ -6,7 +6,7 @@ A full-stack web app to manage investment fund savings — deposit money into fu
 
 **Frontend** — Next.js 15, TailwindCSS, Redux Toolkit, SWR, Recharts, Framer Motion
 
-**Backend** — Express.js, MongoDB, Mongoose, Joi, Helmet, express-rate-limit
+**Backend** — Express.js, MongoDB, Mongoose, Joi, Helmet, express-rate-limit, bcryptjs
 
 ## Prerequisites
 
@@ -47,7 +47,9 @@ brew services start mongodb-community
 ### 4. Seed the database
 
 ```bash
-cd backend && npm run seed
+cd backend
+npm run seed
+npm run seed:user
 ```
 
 ### 5. Run the app
@@ -61,6 +63,13 @@ npm run dev
 Frontend → [http://localhost:3000](http://localhost:3000)
 
 Backend → [http://localhost:5001](http://localhost:5001)
+
+## Login
+
+```
+Email    : user@epargne.fr
+Password : password123
+```
 
 ## Run Tests
 
