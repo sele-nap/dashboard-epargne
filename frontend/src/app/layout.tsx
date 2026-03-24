@@ -9,8 +9,8 @@ import { getLocale, getMessages } from 'next-intl/server';
 const geist = Geist({ subsets: ['latin'], variable: '--font-geist' });
 
 export const metadata: Metadata = {
-  title: 'Épargne & Investissement',
-  description: 'Tableau de bord de gestion de votre épargne investie',
+  title: 'Savings & Investment',
+  description: 'Dashboard for managing your invested savings',
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
