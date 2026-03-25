@@ -1,4 +1,8 @@
 {
+  "metadata": {
+    "title": "My Savings",
+    "description": "Dashboard for managing your invested savings"
+  },
   "nav": { "title": "My Savings", "logout": "Logout", "lang": "FR" },
   "login": {
     "title": "My Savings",

@@ -1,4 +1,8 @@
 {
+  "metadata": {
+    "title": "Mon Épargne",
+    "description": "Tableau de bord pour gérer votre épargne investie"
+  },
   "nav": { "title": "Mon Épargne", "logout": "Déconnexion", "lang": "EN" },
   "login": {
     "title": "Mon Épargne",

@@ -8,20 +8,25 @@ import { getLocale, getMessages } from 'next-intl/server';
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-geist' });
 
-export const metadata: Metadata = {
-  title: 'Savings & Investment',
-  description: 'Dashboard for managing your invested savings',
-  icons: {
-    icon: [
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-    ],
-    apple: '/apple-touch-icon.png',
-    other: [
-      { rel: 'mask-icon', url: '/safari-pinned-tab.svg' },
-    ],
-  },
+const ICONS = {
+  icon: [
+    { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+    { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+  ],
+  apple: '/apple-touch-icon.png',
+  other: [{ rel: 'mask-icon', url: '/safari-pinned-tab.svg' }],
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const messages = await getMessages();
+  const meta = (messages as Record<string, Record<string, string>>).metadata;
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    icons: ICONS,
+  };
+}
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const locale = await getLocale();
