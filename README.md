@@ -1,4 +1,4 @@
-# Dashboard Épargne & Investissement
+# Savings & Investment Dashboard
 
 A full-stack web app to manage investment fund savings — deposit money into funds and track portfolio performance over time.
 
@@ -19,8 +19,8 @@ A full-stack web app to manage investment fund savings — deposit money into fu
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/sele-nap/dashboard-epargne.git
-cd dashboard-epargne
+git clone https://github.com/sele-nap/savings-dashboard.git
+cd savings-dashboard
 npm install
 ```
 
