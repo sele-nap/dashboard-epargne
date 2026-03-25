@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { useTranslations, useLocale } from 'next-intl';
@@ -56,7 +55,9 @@ export default function LoginPage() {
       >
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-indigo-600 shadow-lg shadow-indigo-200 mb-4">
-            <Image src="/logo.svg" alt="Logo" width={28} height={28} />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width={28} height={28}>
+              <path d="M13 2L4.5 13.5H11L9.5 22L19 10.5H12.5L13 2Z"/>
+            </svg>
           </div>
           <h1 className="text-2xl font-bold text-gray-900">{t('title')}</h1>
           <p className="text-sm text-gray-500 mt-1">{t('subtitle')}</p>
